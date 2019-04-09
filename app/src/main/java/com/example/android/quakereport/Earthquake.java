@@ -11,66 +11,53 @@ import java.util.Date;
 public class Earthquake {
 
     private double mMagnitude;
+    private String mLocationDetails;
+    private long mTimeMillis;
+    private String mUrl;
 
-    private String mDistance;
-
-    private String mLocation;
-
-    private String mDate;
-
-    private String mdate;
+    public Earthquake(double mMagnitude, String mLocationDetails, long mTimeMillis, String mUrl) {
+        this.mMagnitude = mMagnitude;
+        this.mLocationDetails = mLocationDetails;
+        this.mTimeMillis = mTimeMillis;
+        this.mUrl = mUrl;
+    }
 
     public Earthquake() {
         // empty constructor
-    }
-
-    public Earthquake(double mMagnitude, String mDistance, String mLocation, String mDate, String mdate) {
-        this.mMagnitude = mMagnitude;
-        this.mDistance = mDistance;
-        this.mLocation = mLocation;
-        this.mDate = mDate;
-        this.mdate = mdate;
     }
 
     public double getmMagnitude() {
         return mMagnitude;
     }
 
-    public String getmDistance() {
-        return mDistance;
-    }
-
-    public String getmLocation() {
-        return mLocation;
-    }
-
-    public String getmDate() {
-        return mDate;
-    }
-
-    public String getMdate() {
-        return mdate;
-    }
-
     public void setmMagnitude(double mMagnitude) {
         this.mMagnitude = mMagnitude;
     }
 
-    public void setmDistance(String mDistance) {
-        this.mDistance = mDistance;
+    public String getmLocationDetails() {
+        return mLocationDetails;
     }
 
-    public void setmLocation(String mLocation) {
-        this.mLocation = mLocation;
+    public void setmLocationDetails(String mLocationDetails) {
+        this.mLocationDetails = mLocationDetails;
     }
 
-    public void setmDate(String mDate) {
-        this.mDate = mDate;
+    public long getmTimeMillis() {
+        return mTimeMillis;
     }
 
-    public void setMdate(String mdate) {
-        this.mdate = mdate;
+    public void setmTimeMillis(long mTimeMillis) {
+        this.mTimeMillis = mTimeMillis;
     }
+
+    public String getmUrl() {
+        return mUrl;
+    }
+
+    public void setmUrl(String mUrl) {
+        this.mUrl = mUrl;
+    }
+
 
 }
 
