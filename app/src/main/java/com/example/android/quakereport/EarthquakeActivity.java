@@ -17,27 +17,40 @@ package com.example.android.quakereport;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class EarthquakeActivity extends AppCompatActivity {
+
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
+    private EarthquakeAdapter earthquakeAdapter;
+    private ListView earthquakeListView;
+
+    private String REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=5&limit=10";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_list_view);
 
-//        List<Earthquake> earthquakes = new JsonToListObject().getList();
+        earthquakeAdapter = new EarthquakeAdapter(this, R.layout.earthquake_list_view, new ArrayList<Earthquake>());
+        earthquakeListView = findViewById(R.id.earthquake_list_view);
+        // findViewById() will look for view by ID.
+        // inside of This activity's context view = R.layout.earthquake_list_view
 
-        String str = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=5&limit=10";
-        new EarthquakeTasks().execute(str);
+//        List<Earthquake> earthquakes = new EarthquakeStringHandler().getList();
 
+        new EarthquakeTasks().execute(REQUEST_URL);
     }
 
 
@@ -55,22 +68,19 @@ public class EarthquakeActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return JsonToListObject.getList(response);
+            return EarthquakeStringHandler.getList(response);
         }
 
         @Override
         protected void onPostExecute(List<Earthquake> earthquakes) {
             // update Adapter and UI
             super.onPostExecute(earthquakes);
-
-            EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(getApplicationContext(),
+            earthquakeAdapter = new EarthquakeAdapter(getApplicationContext(),
                     R.id.earthquake_single_item_layout, earthquakes);
-
-            ListView earthquakeListView = (ListView) findViewById(R.id.earthquake_list_view);
-            // findViewById() will look for view by ID.
-            // inside of This activity's context view = R.layout.earthquake_list_view
             earthquakeListView.setAdapter(earthquakeAdapter);
 
         }
+
     }
+
 }

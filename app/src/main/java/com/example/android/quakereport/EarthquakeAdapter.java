@@ -115,8 +115,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             timeView.setText("time");
         }
 
-
-
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

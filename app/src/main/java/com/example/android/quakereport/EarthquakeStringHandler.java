@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class JsonToListObject {
+public class EarthquakeStringHandler {
 
-    public JsonToListObject() {
+    public EarthquakeStringHandler() {
         // empty constructor
     }
 
