@@ -128,7 +128,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     }
 
-
     public static String getCurrentTimeStamp(long timestamp) {
         SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy hh:mm a");//dd/MM/yyyy
         Date date = new Date(timestamp);
