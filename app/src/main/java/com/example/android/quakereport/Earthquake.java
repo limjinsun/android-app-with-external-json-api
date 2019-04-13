@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Date;
 
-
 public class Earthquake {
 
     private double mMagnitude;
@@ -60,4 +59,3 @@ public class Earthquake {
 
 
 }
-
