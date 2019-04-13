@@ -22,7 +22,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +34,22 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private EarthquakeAdapter earthquakeAdapter;
     private ListView earthquakeListView;
+    private TextView emptyStateTextView;
+
     private static final int EARTHQUAKE_LOADER_ID = 1;
 
     private String REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=5&limit=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_list_view);
 
         earthquakeAdapter = new EarthquakeAdapter(this, R.layout.earthquake_list_view, new ArrayList<Earthquake>());
         earthquakeListView = findViewById(R.id.earthquake_list_view);
+        emptyStateTextView = findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(emptyStateTextView);
 
         // Initialise new Loader
         android.app.LoaderManager loaderManager = getLoaderManager();
@@ -61,6 +68,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public void onLoadFinished(@NonNull Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
         // Before update UI, clear the Adapter.
         earthquakeAdapter.clear();
+
+        // Set empty state text to display "No earthquakes found."
+        emptyStateTextView.setText(R.string.no_earthquakes);
 
         // if you get new data, add it to Adapter.
         if(earthquakes != null && !earthquakes.isEmpty()){
