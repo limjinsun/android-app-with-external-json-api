@@ -11,7 +11,7 @@ https://earthquake.usgs.gov/fdsnws/event/1/
 
 Screen Shot
 -----------
-<img src="https://media.giphy.com/media/QYwTzbiRrH3bqrvc2Q/giphy.gif" height="100%" width="100%">
+<img src="https://media.giphy.com/media/QYwTzbiRrH3bqrvc2Q/giphy.gif" height="50%" width="50%">
 
 
 Pre-requisites
